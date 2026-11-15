@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Debug builds only: never part of a release APK. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!-- Dev harness for the occupancy strip, with no radio attached: the strip
+             in every state it has to survive. Exported so it can be started by name,
+             but off the launcher.
+
+                 adb shell am start -n com.ft8ok/.dev.StripPreviewActivity
+        -->
+        <activity
+            android:name=".dev.StripPreviewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>

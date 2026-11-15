@@ -1,0 +1,2 @@
+# 0006 Mode abstraction
+**Status:** Proposed. **Decision:** `Mode` carries slot length, nominal TX start, TX duration, decode-pass schedule, codec, message model, late-start limit and hard-stop time. FT8 and FT4 are instances (FT8 late start 3.5 s, hard stop about 14.7 s; FT4 values to be scaled and tested). JS8 is v2 and would bring its own conversation engine. **Consequences:** No FT8 constants outside the `Mode` definitions.

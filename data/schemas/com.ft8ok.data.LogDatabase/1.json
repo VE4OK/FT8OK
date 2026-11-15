@@ -1,0 +1,231 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "48bfcbad8458263340d53a93ac50cac0",
+    "entities": [
+      {
+        "tableName": "logbook",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `type` TEXT NOT NULL, `createdAtMs` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createdAtMs",
+            "columnName": "createdAtMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "qso",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `logbookId` INTEGER NOT NULL, `call` TEXT NOT NULL, `timeOnMs` INTEGER NOT NULL, `timeOffMs` INTEGER, `freqHz` INTEGER, `band` TEXT, `mode` TEXT NOT NULL, `submode` TEXT, `stationCallsign` TEXT, `myGrid` TEXT, `grid` TEXT, `rstSent` TEXT, `rstRcvd` TEXT, `state` TEXT, `dxcc` INTEGER, `cqZone` INTEGER, `ituZone` INTEGER, `continent` TEXT, `sig` TEXT, `sigInfo` TEXT, `mySig` TEXT, `mySigInfo` TEXT, `myState` TEXT, `comment` TEXT, `extraAdif` TEXT NOT NULL, FOREIGN KEY(`logbookId`) REFERENCES `logbook`(`id`) ON UPDATE NO ACTION ON DELETE RESTRICT )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "logbookId",
+            "columnName": "logbookId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "call",
+            "columnName": "call",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeOnMs",
+            "columnName": "timeOnMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "timeOffMs",
+            "columnName": "timeOffMs",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "freqHz",
+            "columnName": "freqHz",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "band",
+            "columnName": "band",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "mode",
+            "columnName": "mode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "submode",
+            "columnName": "submode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "stationCallsign",
+            "columnName": "stationCallsign",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "myGrid",
+            "columnName": "myGrid",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "grid",
+            "columnName": "grid",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "rstSent",
+            "columnName": "rstSent",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "rstRcvd",
+            "columnName": "rstRcvd",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "state",
+            "columnName": "state",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "dxcc",
+            "columnName": "dxcc",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "cqZone",
+            "columnName": "cqZone",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "ituZone",
+            "columnName": "ituZone",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "continent",
+            "columnName": "continent",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "sig",
+            "columnName": "sig",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "sigInfo",
+            "columnName": "sigInfo",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "mySig",
+            "columnName": "mySig",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "mySigInfo",
+            "columnName": "mySigInfo",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "myState",
+            "columnName": "myState",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "comment",
+            "columnName": "comment",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "extraAdif",
+            "columnName": "extraAdif",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_qso_logbookId_timeOnMs",
+            "unique": false,
+            "columnNames": [
+              "logbookId",
+              "timeOnMs"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_qso_logbookId_timeOnMs` ON `${TABLE_NAME}` (`logbookId`, `timeOnMs`)"
+          },
+          {
+            "name": "index_qso_call",
+            "unique": false,
+            "columnNames": [
+              "call"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_qso_call` ON `${TABLE_NAME}` (`call`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "logbook",
+            "onDelete": "RESTRICT",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "logbookId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '48bfcbad8458263340d53a93ac50cac0')"
+    ]
+  }
+}

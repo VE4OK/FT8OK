@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Every user-visible string lives here from day one, English
+  first. Nothing in a composable may be a literal.
+-->
+<resources>
+    <string name="app_name">FT8OK</string>
+
+    <!-- Occupancy strip. The lanes are named for the slot
+         parity they show, not for TX and RX: both lanes are received spectra, and
+         the labels must not imply otherwise. -->
+    <string name="strip_lane_even">EVEN</string>
+    <string name="strip_lane_odd">ODD</string>
+    <string name="strip_frequency">%1$d Hz</string>
+    <string name="strip_frequency_digits">%1$d</string>
+    <string name="strip_no_frequency">—</string>
+    <string name="strip_no_data">—</string>
+
+    <!-- Lane age, compact: it sits in a narrow column beside each lane. A lane can
+         be minutes stale because we are deaf in every slot we transmit in, so its
+         age is part of the reading (ADR 0013). -->
+    <string name="strip_age_now">now</string>
+    <string name="strip_age_seconds">%1$ds</string>
+    <string name="strip_age_minutes">%1$d:%2$02d</string>
+
+    <string name="strip_mode_auto">Auto</string>
+    <string name="strip_mode_user">Set</string>
+
+    <!-- Content descriptions. -->
+    <string name="strip_a11y">Occupancy strip. Transmitting on %1$s. Tap to choose a clear frequency.</string>
+    <string name="strip_a11y_lane_even">Even slot spectrum, last heard %1$s</string>
+    <string name="strip_a11y_lane_odd">Odd slot spectrum, last heard %1$s</string>
+
+    <!-- The radio link. -->
+    <string name="rig_none">no radio</string>
+    <string name="rig_connecting">connecting…</string>
+    <string name="rig_permission">TAP TO CONNECT RADIO</string>
+    <string name="rig_linked">radio linked, waiting</string>
+    <string name="rig_dial">%1$s MHz</string>
+    <string name="rig_off_band">off band</string>
+    <string name="rig_disconnected">radio disconnected</string>
+
+    <!-- Radio control. -->
+    <string name="freq_menu_a11y">Radio frequency. Tap to choose one.</string>
+    <string name="freq_alt">alt</string>
+    <string name="freq_custom">custom</string>
+    <string name="freq_add_custom">Add custom…</string>
+    <string name="rig_wrong_mode">Radio is in %1$s, not USB-D. Tap to set USB-D.</string>
+    <string name="rig_setting">Setting the radio…</string>
+    <string name="rig_command_failed">Radio not changed: %1$s</string>
+    <string name="rig_connect">Connect</string>
+    <string name="rig_disconnect">Disconnect</string>
+    <string name="rig_set_usbd">Set USB-D</string>
+    <string name="rig_link_detail">CI-V address %1$02Xh · %2$d baud</string>
+    <string name="rig_custom_help">kHz. Transmit allowed on these. The FT8 table is always in the picker.</string>
+    <string name="rig_custom_hint">e.g. 7075.5</string>
+    <string name="rig_custom_add">Add</string>
+    <string name="rig_custom_remove">Remove %1$s</string>
+    <string name="rig_custom_none">None yet.</string>
+    <string name="tx_guard_no_radio">No radio connected</string>
+    <string name="tx_guard_no_frequency">Radio frequency not known yet</string>
+    <string name="tx_guard_off_list">Not an FT8 frequency or one of yours</string>
+    <string name="tx_guard_wrong_mode">Radio is in %1$s, not USB-D</string>
+    <string name="tx_guard_data_unknown">Radio data mode not known yet</string>
+
+    <!-- Live receive (the Radio screen). -->
+    <string name="rx_title">FT8OK</string>
+    <string name="rx_idle">Not receiving. Receive starts by itself once the microphone is allowed and the radio is plugged in and on.</string>
+    <string name="rx_listening">Listening. The first decodes appear near the end of the slot.</string>
+    <string name="rx_no_usb">No USB audio device. Is the radio attached and switched on?</string>
+    <string name="rx_needs_permission">FT8OK needs microphone access to read the radio\'s audio over the USB cable. It records nothing else and sends nothing anywhere.</string>
+    <string name="rx_clipped">Audio is clipping — turn the radio\'s USB output level down</string>
+    <string name="rx_paused">Paused — the app only receives while it is on screen</string>
+    <string name="rx_resumed">Receiving again. Decodes resume after the next full slot.</string>
+    <string name="rx_no_grid">No stations heard — the band may be empty, or the phone\'s clock may be off</string>
+
+    <!-- Status readouts. All monospace, all compact: this line is glanced at. -->
+    <string name="rx_clock_none">clock: phone</string>
+    <string name="rx_clock_synced">clock: band %1$+d ms</string>
+    <string name="rx_clock_holding">clock: band %1$+d ms, holding</string>
+    <string name="rx_clock_tentative">clock: band %1$+d ms, tentative</string>
+    <string name="rx_counts">%1$d slots · %2$d decodes</string>
+    <string name="rx_level">peak %1$d dBFS</string>
+
+    <!-- TX test (rule 3: hold-to-transmit only, cannot latch). -->
+    <string name="tx_self_test">Self test</string>
+    <string name="tx_hold">HOLD TO TX</string>
+    <string name="tx_hold_waiting">HOLD…</string>
+    <string name="tx_transmitting">TRANSMITTING</string>
+
+    <!-- Station setup. No default callsign exists, deliberately. -->
+    <string name="setup_needed">SET YOUR CALLSIGN AND GRID BEFORE TRANSMITTING</string>
+    <string name="setup_edit">edit</string>
+    <string name="setup_hide">hide</string>
+    <string name="setup_callsign">Callsign</string>
+    <string name="setup_grid">Grid</string>
+    <string name="setup_swr">SWR abort</string>
+    <string name="setup_no_callsign">A callsign is required: it goes in every message and in the other operator&#8217;s log.</string>
+    <string name="setup_bad_callsign">That does not look like a callsign.</string>
+    <string name="setup_no_grid">A four-character grid is required — the first message of a contact carries it.</string>
+    <string name="setup_bad_grid">A grid is four characters, like FN25.</string>
+
+    <!-- Automatic TX. Arm defaults off and nothing re-arms on its own (rule 3). -->
+    <string name="tx_arm">ARM TX</string>
+    <string name="tx_armed">ARMED</string>
+    <string name="tx_halt">HALT</string>
+    <string name="tx_cq">CQ</string>
+    <string name="tx_cq_on">CQ ON</string>
+    <!-- The CQ button with a CQ word set: CQ POTA. -->
+    <string name="tx_cq_word">CQ %1$s</string>
+    <string name="tx_unheard">%1$s not heard yet</string>
+    <string name="tx_unheard_will_send">Armed — calling %1$s, not heard yet: %2$s</string>
+
+    <!-- The CQ ⋯ panel. It only queues: nothing in it transmits. -->
+    <string name="more_open">More CQ, call and text options</string>
+    <string name="more_tab_cq">CQ</string>
+    <string name="more_tab_call">CALL</string>
+    <string name="more_tab_text">TEXT</string>
+    <string name="more_close">Close</string>
+    <string name="more_cq_label">Word after CQ</string>
+    <string name="more_cq_none">none</string>
+    <string name="more_cq_other">other…</string>
+    <string name="more_cq_other_hint">1–4 letters or 3 digits</string>
+    <string name="more_cq_bad_word">A CQ word is 1–4 letters, or exactly 3 digits.</string>
+    <string name="more_cq_hint">The button beside ⋯ now starts CQ. Press ARM TX to transmit.</string>
+    <string name="more_cq_contest_locked">Contest mode sets the CQ word. Change it in Settings › Contest.</string>
+    <string name="more_call_label">Callsign</string>
+    <string name="more_call_tx_in">Transmit in</string>
+    <string name="more_call_last_heard">last heard: %1$s %2$s</string>
+    <string name="more_call_not_heard">last heard: not heard</string>
+    <string name="more_call_bad">Not a callsign FT8 can send.</string>
+    <string name="more_call_hint">The button beside ⋯ now calls this station. Press ARM TX to transmit.</string>
+    <string name="more_text_saved">Saved</string>
+    <string name="more_text_save">+ save</string>
+    <string name="more_text_edit">remove…</string>
+    <string name="more_text_edit_done">done</string>
+    <string name="more_text_hint">The button beside ⋯ now queues this text for one transmission, then back to AUTO. Press ARM TX to transmit.</string>
+    <string name="tx_call_button">CALL %1$s</string>
+    <string name="tx_call_empty">CALL</string>
+    <string name="tx_text_button">TEXT</string>
+    <!-- Second line on the CQ button while contest mode is on. -->
+    <string name="tx_contest_line">Contest</string>
+    <string name="more_kind_standard">Standard message · other software can answer it</string>
+    <string name="more_kind_cq">Standard CQ · anyone can answer it · replies are normal</string>
+    <string name="more_kind_call">Standard call · then the exchange runs automatically</string>
+    <string name="more_kind_free">Free text · decoders show it, but none will answer it automatically</string>
+    <string name="more_refused_empty">Type something to send.</string>
+    <string name="more_refused_char">“%1$s” cannot be sent in FT8. Allowed: A–Z 0–9 space + - . / ?</string>
+    <string name="more_refused_long">%1$d characters. Free text holds 13.</string>
+    <string name="more_kind_free_call">Free text, exactly as typed · it reads like a call, but no software will answer free text</string>
+    <string name="more_garbled">Others would see “%1$s”, not this. Not sent.</string>
+    <string name="more_refused_unsendable">FT8 cannot send this.</string>
+    <string name="more_no_profile">Set your callsign and grid in Settings first.</string>
+    <string name="more_no_encoder">The encoder is not loaded, so nothing can be checked or queued.</string>
+    <!-- App shell and tabs. -->
+    <string name="nav_live">Live</string>
+    <string name="nav_roster">Roster</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_log">Log</string>
+    <string name="nav_settings">Settings</string>
+    <string name="log_empty">No contacts in this logbook yet.</string>
+    <string name="top_clock_phone">phone</string>
+    <string name="top_even">EVEN</string>
+    <string name="top_odd">ODD</string>
+    <string name="top_tx_shift">TX %+.2f</string>
+    <string name="top_band_offset">band %+.2f</string>
+    <string name="live_setup_needed">Set your callsign and grid in Settings before transmitting. Tap here.</string>
+    <string name="live_off_frequency">The radio is not on an FT8 frequency or one of yours, so FT8OK will not transmit.</string>
+    <!-- %1$s the call, %2$s what they sent (CQ FD, Field Day, ...). -->
+    <string name="live_contest_partner">%1$s is in a contest (%2$s). FT8OK sends standard messages only, so this contact may not complete.</string>
+    <string name="contest_kind_grid">grid exchange</string>
+    <string name="contest_kind_field_day">Field Day</string>
+    <string name="contest_kind_rtty">RTTY Roundup</string>
+    <string name="contest_kind_eu_vhf">EU VHF</string>
+    <string name="settings_station">STATION</string>
+    <string name="settings_radio">RADIO</string>
+    <string name="settings_transmit">TRANSMIT</string>
+    <string name="settings_receive_group">RECEIVE</string>
+    <string name="settings_frequencies">YOUR FREQUENCIES</string>
+    <string name="settings_tx_test">TX test</string>
+    <string name="settings_log">LOG</string>
+    <!-- Settings › CQ Preferences. -->
+    <string name="settings_cq_prefs">CQ PREFERENCES</string>
+    <string name="cq_miss_label">Move on after missed replies</string>
+    <string name="cq_miss_off">Off</string>
+    <string name="cq_miss_note_off">Off: as before. A silent partner is dropped after 2 tries; one who keeps answering is kept until you stop the run. CQ runs only; search and pounce is not affected.</string>
+    <plurals name="cq_miss_note">
+        <item quantity="one">After %d missed reply, the next slot goes to the next caller or CQ. A miss: your partner was silent or sent the same thing again. CQ runs only; search and pounce is not affected.</item>
+        <item quantity="other">After %d missed replies in a row, the next slot goes to the next caller or CQ. A miss: your partner was silent or sent the same thing again. CQ runs only; search and pounce is not affected.</item>
+    </plurals>
+    <!-- Settings › CQ PREFERENCES, stop after unanswered CQs. -->
+    <string name="cq_stop_label">Stop CQ after unanswered CQs</string>
+    <string name="cq_stop_note_off">Off: CQ keeps going, answered or not, until you stop it or leave the app. For contests.</string>
+    <plurals name="cq_stop_note">
+        <item quantity="one">After %d CQ with no answer, CQ stops and TX disarms.</item>
+        <item quantity="other">After %d CQs in a row with no answer, CQ stops and TX disarms.</item>
+    </plurals>
+    <!-- Settings › Contest. -->
+    <string name="settings_contest">CONTEST</string>
+    <string name="feed_dupe">DUPE</string>
+    <!-- After a reply the reply list found, not the decoder. -->
+    <string name="feed_reply_list_mark">" *"</string>
+    <string name="contest_off">Off</string>
+    <string name="contest_grid">Grid</string>
+    <string name="contest_field_day">Field Day</string>
+    <string name="contest_off_note">Standard messages. A contest mode changes what CQ, calls and answers send.</string>
+    <string name="contest_grid_note">NA VHF, WW Digi, ARRL Digi: your grid (Station) is the exchange.</string>
+    <string name="contest_grid_word">Word after CQ: TEST for NA VHF and ARRL Digi, WW for WW Digi, or your own for another contest.</string>
+    <string name="contest_word_custom">Custom</string>
+    <string name="contest_word_custom_label">1-4 letters or 3 digits</string>
+    <string name="contest_fd_note">ARRL Field Day: your class (transmitters and letter, 2A) and ARRL/RAC section (MB, EMA, DX…).</string>
+    <string name="contest_fd_class">Class</string>
+    <string name="contest_fd_section">Section</string>
+    <string name="contest_sending">On: CQ %1$s, sending %2$s.</string>
+    <!-- Settings › Contest, Report+grid. -->
+    <string name="contest_report_grid">Rpt+grid</string>
+    <string name="contest_report_grid_note">FT Challenge, DARC FT4, Africa FT4, FT4 Field Day, RSGB FT4: ordinary messages (grid, report, RR73). Contest mode marks dupes and never sends combined replies, which some contests ban.</string>
+    <string name="contest_word_none">CQ</string>
+    <string name="contest_sending_standard">On: %1$s, sending ordinary messages, no combined replies.</string>
+    <string name="contest_now_valid">Ready: tap it again to switch on.</string>
+    <string name="contest_problem_call">Not on: contest messages carry only a plain callsign (no /P or prefix).</string>
+    <string name="contest_problem_grid">Not on: set your 4-character grid under Station first.</string>
+    <string name="contest_problem_class">Not on: class must be 1–32 transmitters and a letter A–F, like 2A.</string>
+    <string name="contest_problem_section">Not on: not an ARRL/RAC section FT8 can send (use DX outside them).</string>
+    <string name="contest_problem_word">Not on: the word after CQ must be 1-4 letters or 3 digits, and not FD.</string>
+    <string name="settings_diagnostics">DIAGNOSTICS</string>
+    <string name="settings_tx_test_note">Hold for half a second to transmit your callsign, to set drive into a dummy load. Self test never keys the radio.</string>
+    <string name="settings_receive">Receive</string>
+    <string name="settings_receive_note">The screen stays on. Locking the phone or leaving the app stops receive and disarms TX.</string>
+    <string name="settings_no_tx_report">No transmission yet this session.</string>
+    <string name="settings_detailed_logs">Detailed logs</string>
+    <string name="settings_detailed_logs_note">Extra timing lines, every decode, and recordings of some slots, kept on the phone for troubleshooting. Can use about 200 MB. Turning it off deletes them.</string>
+    <string name="feed_back_to_live">Back to live ↓ · %1$d new</string>
+    <string name="feed_our_tx">our TX</string>
+    <string name="feed_band_change">— now on %1$s —</string>
+    <string name="feed_band_unknown">— frequency unknown —</string>
+    <!-- The feed's filter chips. -->
+    <string name="feed_filter_cq">CQ</string>
+    <string name="feed_filter_to_me">To me</string>
+    <string name="feed_filter_all">All</string>
+    <string name="feed_filter_custom">Custom</string>
+    <string name="feed_custom_hint">e.g. POTA</string>
+    <string name="map_zoom_local">Local</string>
+    <string name="map_zoom_squares">Squares</string>
+    <string name="map_zoom_area">Area</string>
+    <string name="map_zoom_region">Region</string>
+    <string name="map_zoom_world">World</string>
+    <string name="map_window_5">5 min</string>
+    <string name="map_window_15">15 min</string>
+    <string name="map_window_60">60 min</string>
+    <string name="map_window_session">All</string>
+    <string name="map_counts">%1$d on map · %2$d sq</string>
+    <string name="map_zoom_in">+</string>
+    <string name="map_zoom_out">−</string>
+    <string name="map_home">ME</string>
+    <string name="map_grid">GRID</string>
+    <string name="map_loading">Loading map…</string>
+    <string name="map_square">%1$s · %2$d heard</string>
+    <string name="map_square_far">%1$s · %2$d heard · %3$d km · %4$03d°</string>
+    <string name="map_close">✕</string>
+    <string name="roster_window">Heard in last</string>
+    <string name="roster_sort_country">Country</string>
+    <string name="roster_col_country">COUNTRY</string>
+    <string name="roster_sort_recent">Recent</string>
+    <string name="roster_sort_snr">SNR</string>
+    <string name="roster_sort_grid">Grid</string>
+    <string name="roster_col_call">CALL</string>
+    <string name="roster_col_grid">GRID</string>
+    <string name="roster_col_snr">SNR</string>
+    <string name="roster_col_ago">AGO</string>
+    <string name="roster_cq">CQ</string>
+    <string name="roster_empty">Nobody heard in this window yet.</string>
+    <!-- Message picker: which step of the contact goes next. -->
+    <string name="pick_grid">GRID</string>
+    <string name="pick_report">RPT</string>
+    <string name="pick_close">RR73</string>
+    <string name="pick_auto">AUTO</string>
+    <string name="tx_auto_off">TX off — tap a station to work it, or CQ</string>
+    <string name="tx_auto_ready">TX off — ready to send: %1$s</string>
+    <string name="tx_auto_disarmed_ready">TX off (%1$s) — ready to send: %2$s</string>
+    <string name="tx_auto_armed_idle">Armed — nothing to send yet</string>
+    <string name="tx_auto_will_send">Armed — next: %1$s</string>
+    <!-- Who answers next in a CQ run, on the status line itself -->
+    <string name="tx_with_next">%1$s · then %2$s</string>
+    <string name="tx_auto_transmitting">TRANSMITTING: %1$s</string>
+    <string name="tx_auto_disarmed">TX off — %1$s</string>
+    <!-- Armed, with something queued, and still not transmitting. Waiting for our
+         own slot needs no words; a frequency the guard refuses does. -->
+    <string name="tx_auto_blocked">Armed — not sending: %1$s</string>
+    <string name="tx_block_off_frequency">not an FT8 frequency</string>
+    <string name="tx_block_frequency_unknown">radio frequency unknown</string>
+
+    <!-- Logbook (rule 8). The database always has the contact; these are about the ADIF file. -->
+    <string name="log_logged">Logged %1$s</string>
+    <string name="log_undo">UNDO</string>
+    <string name="log_not_logged">Not logged · both reports exchanged</string>
+    <string name="log_not_logged_current">now</string>
+    <string name="log_force">LOG</string>
+    <string name="log_deleted">Deleted %1$s</string>
+    <string name="log_save_copy">SAVE COPY</string>
+    <string name="log_book_open">%1$s ▾</string>
+    <string name="logbooks_title">Logbooks</string>
+    <string name="logbooks_close">CLOSE</string>
+    <string name="logbooks_new_name">New logbook name</string>
+    <string name="logbooks_create">CREATE</string>
+    <string name="logbooks_import">IMPORT ADIF FILE…</string>
+    <string name="logbooks_import_hint">Adds the file\'s contacts to the logbook in use (●). Contacts already in it are skipped.</string>
+    <string name="logbooks_import_failed">Not imported (%1$s).</string>
+    <string name="logbooks_name_empty">Give the logbook a name.</string>
+    <string name="logbooks_name_long">At most %1$d characters.</string>
+    <string name="logbooks_name_taken">That name is taken (or would share a log file with one that is).</string>
+    <plurals name="logbooks_import_added">
+        <item quantity="one">Added %1$d contact to %2$s</item>
+        <item quantity="other">Added %1$d contacts to %2$s</item>
+    </plurals>
+    <plurals name="logbooks_import_skipped">
+        <item quantity="one">%1$d already there</item>
+        <item quantity="other">%1$d already there</item>
+    </plurals>
+    <plurals name="logbooks_import_rejected">
+        <item quantity="one">%1$d could not be read (left in your file)</item>
+        <item quantity="other">%1$d could not be read (left in your file)</item>
+    </plurals>
+    <string name="log_copy_failed">Copy not saved (%1$s). The log itself is safe.</string>
+    <plurals name="log_copy_saved">
+        <item quantity="one">Saved %1$d contact to %2$s</item>
+        <item quantity="other">Saved %1$d contacts to %2$s</item>
+    </plurals>
+    <string name="log_edit_title">Edit %1$s</string>
+    <string name="log_edit_mode">%1$s · %2$s</string>
+    <string name="log_field_call">Call</string>
+    <string name="log_field_time">Time on, UTC (yyyy-mm-dd hh:mm)</string>
+    <string name="log_field_freq">Dial frequency, MHz</string>
+    <string name="log_field_grid">Their grid</string>
+    <string name="log_field_sent">Sent</string>
+    <string name="log_field_rcvd">Received</string>
+    <string name="log_field_comment">Comment</string>
+    <string name="log_save">SAVE</string>
+    <string name="log_cancel">CANCEL</string>
+    <string name="log_delete">DELETE THIS CONTACT</string>
+    <string name="log_bad_call">Letters, digits and /, with at least one digit.</string>
+    <string name="log_bad_time">Use yyyy-mm-dd hh:mm, in UTC.</string>
+    <string name="log_bad_freq">Not a frequency in an amateur band.</string>
+    <string name="log_bad_grid">A 4- or 6-character grid, like FN25 or FN25ab.</string>
+    <string name="log_bad_report">A report like -12 or +05.</string>
+    <string name="log_not_ascii">Plain characters only: a log file cannot carry accents or symbols.</string>
+    <string name="log_no_folder">Log file: no folder chosen. Contacts are kept in the app; choose a folder in Settings.</string>
+    <string name="log_file_error">Log file not updated (%1$s). Contacts are safe in the app.</string>
+    <string name="setup_log_folder">Log folder</string>
+    <string name="setup_log_folder_none">Not set. Choose opens Download: make a folder there (e.g. FT8OK) and use it, so websites can find the log file.</string>
+    <string name="setup_log_folder_choose">Choose</string>
+    <plurals name="log_count">
+        <item quantity="one">%1$d contact</item>
+        <item quantity="other">%1$d contacts</item>
+    </plurals>
+    <plurals name="feed_decodes">
+        <item quantity="one">%1$d decode</item>
+        <item quantity="other">%1$d decodes</item>
+    </plurals>
+    <plurals name="feed_decodes_and_tx">
+        <item quantity="one">%1$d decode · our TX</item>
+        <item quantity="other">%1$d decodes · our TX</item>
+    </plurals>
+</resources>

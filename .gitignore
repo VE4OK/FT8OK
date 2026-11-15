@@ -1,0 +1,22 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+# The rule above only matches the ROOT build dir. This one matches every module's
+# (app/build, core-*/build...). Without it, 140 build outputs were
+# staged for the first project commit - caught 2026-10-13.
+build/
+# Kotlin compiler session data, created alongside builds.
+.kotlin/
+/captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.keystore
+*.jks
+keystore.properties
+
+

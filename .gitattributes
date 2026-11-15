@@ -1,0 +1,71 @@
+# Line endings and binary handling.
+#
+# Why this file exists: development happens on Windows, but the Gradle wrapper
+# script and any CI runner are POSIX. A CRLF `gradlew` fails to execute on Linux
+# with a confusing "bad interpreter" error, and CRLF in a .bat file can break
+# labels and goto. So normalise everything in the repository to LF and check out
+# the handful of Windows-native script types as CRLF.
+
+# Default: store text as LF in the repo, convert on checkout per platform.
+* text=auto
+
+# --- Source and config: always LF in the repo ---
+*.kt        text eol=lf
+*.kts       text eol=lf
+*.java      text eol=lf
+*.c         text eol=lf
+*.h         text eol=lf
+*.cpp       text eol=lf
+*.hpp       text eol=lf
+*.cmake     text eol=lf
+CMakeLists.txt text eol=lf
+*.gradle    text eol=lf
+*.pro       text eol=lf
+*.properties text eol=lf
+*.xml       text eol=lf
+*.json      text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.md        text eol=lf
+*.txt       text eol=lf
+*.html      text eol=lf
+*.sh        text eol=lf
+
+# The Gradle wrapper script MUST stay LF or it will not run on Linux or macOS.
+gradlew     text eol=lf
+
+# --- Windows-native scripts: CRLF on checkout ---
+gradlew.bat text eol=crlf
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.ps1       text eol=crlf
+
+# --- Vendored third-party source: preserve bytes exactly ---
+# These must stay byte-identical to upstream so they can be verified against the
+# recorded commit by hash or diff (provenance). Normalising
+# line endings would silently break that, and upstream ships CRLF here.
+core-dsp/src/main/cpp/ft8_lib/** -text
+
+# --- Binary: never touch, never diff as text ---
+# The test corpus is recorded audio; a line-ending "fix" would corrupt it.
+*.wav       binary
+*.flac      binary
+*.jar       binary
+*.apk       binary
+*.aab       binary
+*.aar       binary
+*.so        binary
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.webp      binary
+*.ico       binary
+*.pdf       binary
+*.keystore  binary
+*.jks       binary
+
+# --- Diff hints ---
+# Keep the FT8CN/FT8TW audit and the design record out of language stats; they
+# are reference material, not our source.
+docs/reference/** linguist-documentation
+docs/** linguist-documentation

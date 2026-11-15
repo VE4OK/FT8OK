@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Platform theme only. Compose draws the UI, so this exists to set the window
+  background and avoid a white flash before the first frame - the app is used in the
+  dark as well as in sunlight, and a full-screen white flash at night is hostile.
+-->
+<resources>
+    <style name="Theme.FT8OK" parent="@android:style/Theme.DeviceDefault.NoActionBar">
+        <item name="android:windowBackground">@android:color/black</item>
+    </style>
+</resources>

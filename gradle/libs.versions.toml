@@ -1,0 +1,97 @@
+#  Version catalogue. Keep every version here, never inline in a build file.
+#
+#  Verified against developer.android.com on 2026-10-13:
+#  AGP 9.4.0 (current stable, September 2026) requires Gradle 9.6.0 minimum,
+#  SDK Build Tools 36.0.0 minimum, JDK 17 minimum, and supports up to API 37.
+#
+#  There is deliberately no Kotlin plugin here. AGP 9 has BUILT-IN Kotlin support
+#  and applying org.jetbrains.kotlin.android alongside it fails the build with
+#  "Cannot add extension with name 'kotlin'" (observed 2026-10-13). The Kotlin
+#  version comes from AGP. Opt out only via android.builtInKotlin=false, which we
+#  do not want.
+#
+#  TOML section order matters: every [versions] key must come before [libraries],
+#  or Gradle reads the leftovers as library coordinates and fails with
+#  "Invalid dependency notation" (observed 2026-10-13).
+
+[versions]
+agp = "9.4.0"
+
+# mik3y/usb-serial-for-android, MIT. Needed because the IC-7300's CAT interface is
+# a Silicon Labs CP2102 presenting a vendor-specific interface, which Android has
+# no driver for (verified by enumeration 2026-10-13). Supports CP210x.
+usbSerial = "3.11.0"
+
+# Android SDK levels come from ADR 0007: TARGET the phone's own API level, keep
+# minSdk low enough for older hardware - and COMPILE against the latest, which is
+# a different decision.
+#
+# compileSdk 36 while targetSdk stays 35 (amended 2026-10-14): the current Compose
+# BOM pulls androidx.core:core-ktx 1.18.0, which refuses to be consumed by a
+# project compiled against 35 ("requires libraries and applications that depend on
+# it to compile against version 36 or later"). compileSdk only decides which APIs
+# are visible to the compiler; targetSdk is what opts the app in to new runtime
+# behaviour, and that stays on the phone's own level. See ADR 0007.
+compileSdk = "36"
+targetSdk = "35"
+minSdk = "26"
+
+# Compile-time only: @RequiresPermission, so the RECORD_AUDIO requirement reaches
+# lint at every call site.
+androidxAnnotation = "1.9.1"
+
+junit = "4.13.2"
+
+# Compose. The BOM pins every compose-* artifact to one tested set, so only the
+# BOM carries a version here - verified present on Google Maven 2026-10-14.
+composeBom = "2026.06.01"
+activityCompose = "1.13.0"
+
+# MUST match the Kotlin version AGP bundles, not the latest release. AGP 9.4.0
+# brings Kotlin 2.2.10 (checked via the resolved kotlin-gradle-plugin), and the
+# Compose compiler is a Kotlin compiler plugin, so a mismatch is a hard failure.
+# Re-check this whenever the AGP version moves.
+composeCompiler = "2.2.10"
+
+# The logbook database (rule 8). Room 2.8.5 is the latest stable on Google Maven,
+# checked 2026-10-15; it pulls androidx.sqlite 2.6.2. KSP generates its code - KSP
+# 2.3.x is versioned independently of Kotlin, so it does not have to track AGP.
+room = "2.8.5"
+ksp = "2.3.12"
+
+# Test-only: gives Room an Android runtime on the JVM so the logbook is tested on
+# this VM with no phone (rung 0). Never shipped.
+robolectric = "4.17"
+androidxTestCore = "1.7.0"
+
+[libraries]
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "androidxAnnotation" }
+
+usb-serial = { module = "com.github.mik3y:usb-serial-for-android", version.ref = "usbSerial" }
+
+# JUnit 4, not 5: the Android Gradle plugin wires JUnit 4 up by default for
+# unit tests, and rung 0 of the test ladder only needs assertions.
+junit = { module = "junit:junit", version.ref = "junit" }
+
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+compose-ui = { module = "androidx.compose.ui:ui" }
+compose-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose-material3 = { module = "androidx.compose.material3:material3" }
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+androidx-test-core = { module = "androidx.test:core", version.ref = "androidxTestCore" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+# Required from Kotlin 2.0 whenever buildFeatures.compose is on. AGP 9's built-in
+# Kotlin does NOT supply it - enabling compose without this fails configuration
+# with "the Compose Compiler Gradle plugin is required" (observed 2026-10-14).
+# Unlike org.jetbrains.kotlin.android, this one coexists with built-in Kotlin.
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "composeCompiler" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room = { id = "androidx.room", version.ref = "room" }

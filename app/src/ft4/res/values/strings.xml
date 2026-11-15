@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        FT4OK's own wording. Every string here overrides the one of
+        the same name in src/main, which says FT8 / FT8OK; nothing else differs. A new
+        string in src/main that names the mode or the app needs its FT4OK version here.
+    -->
+    <string name="app_name">FT4OK</string>
+    <string name="rig_custom_help">kHz. Transmit allowed on these. The FT4 table is always in the picker.</string>
+    <string name="tx_guard_off_list">Not an FT4 frequency or one of yours</string>
+    <string name="rx_title">FT4OK</string>
+    <string name="rx_needs_permission">FT4OK needs microphone access to read the radio\'s audio over the USB cable. It records nothing else and sends nothing anywhere.</string>
+    <string name="more_call_bad">Not a callsign FT4 can send.</string>
+    <string name="more_refused_char">“%1$s” cannot be sent in FT4. Allowed: A–Z 0–9 space + - . / ?</string>
+    <string name="more_refused_unsendable">FT4 cannot send this.</string>
+    <string name="live_off_frequency">The radio is not on an FT4 frequency or one of yours, so FT4OK will not transmit.</string>
+    <string name="live_contest_partner">%1$s is in a contest (%2$s). FT4OK sends standard messages only, so this contact may not complete.</string>
+    <string name="contest_problem_section">Not on: not an ARRL/RAC section FT4 can send (use DX outside them).</string>
+    <string name="tx_block_off_frequency">not an FT4 frequency</string>
+    <string name="setup_log_folder_none">Not set. Choose opens Download: make a folder there (e.g. FT4OK) and use it, so websites can find the log file.</string>
+</resources>

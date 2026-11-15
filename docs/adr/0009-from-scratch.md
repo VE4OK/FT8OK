@@ -1,0 +1,2 @@
+# 0009 Build from scratch; do not fork FT8CN/FT8TW
+**Status:** Accepted. **Context:** The audit (docs/reference) found both apps are large single-class designs; FT8TW's public source is a partial snapshot that cannot rebuild the shipped app; the user judged both buggy and poor UX. **Decision:** New codebase. Older sources are read for ideas only. **Consequences:** More work up front, clean provenance and testability.

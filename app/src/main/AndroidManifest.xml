@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+      RECORD_AUDIO is the ONLY permission this project ships (ADR 0002, rule 1).
+      No INTERNET, no location, no notifications, no foreground service, no storage.
+      The build fails if anything else reaches the MERGED manifest - see the
+      permission guard in build.gradle.kts.
+    -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- The whole app depends on USB host mode. Verified present on the test phones
+         via `pm list features`. -->
+    <uses-feature
+        android:name="android.hardware.usb.host"
+        android:required="true" />
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FT8OK">
+
+        <!-- The app. Portrait-locked in v1 (ADR 0010).
+
+             configChanges: the whole session lives in this activity, so the rebuild
+             Android would otherwise do on these changes (dark mode at sunset, a
+             split-screen resize, a keyboard or dock, a new mobile network) ended the
+             contact in progress. Compose redraws for them by itself.
+        -->
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="mcc|mnc|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|density|fontScale"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
